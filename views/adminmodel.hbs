@@ -1,0 +1,43 @@
+MODEL {{lamp.name}}
+{{lamp.slug}}
+<div class="modeledit">
+        <form action="/adminzet/adminpanel/model/{{lamp.slug}}/editsubmit" enctype="multipart/form-data" method="POST" class="editform" >
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="name" placeholder="Имя" name="name" value="{{lamp.name}}">
+            <p class="to">Описание</p>
+            <textarea name="des" cols="40" rows="3" placeholder="Описание" >{{lamp.description}}</textarea>
+            <p class="to">Описание короткое</p>
+            <textarea name="short_des" cols="40" rows="3" placeholder="Описание короткое">{{lamp.short_des}}</textarea>
+            <p class="to">Ссылка</p>
+            <input type="text" placeholder="ссылка" name="slug" value="{{lamp.slug}}">
+            <input name="photos" type="file" multiple>
+            <p class="to">Цена</p>
+            <input type="number" name="price" id="" placeholder="Цена" value="{{lamp.price}}">
+            
+            <select name="cal" id="">
+                
+               <option>{{cal}}</option>
+                {{!-- @foreach ($cals as $cal)
+                    <option>{{$cal->name}}</option>
+                @endforeach --}}
+                {{#each cals }}
+                    <option>{{this}}</option>
+                {{/each}}
+            </select>
+          
+            
+
+            {{#if_eq lamp.global 1}}
+            
+            Главная модель<input type="checkbox" name="global" checked>
+            {{else}}
+            Главная модель<input type="checkbox" name="global">
+            {{/if_eq}}
+           
+            <button type="submit">Изменить модель</button>
+        </form>
+        <form action="" method="POST" >
+           
+            <button>Удалить модель</button>
+        </form>
+    </div>

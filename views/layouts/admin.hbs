@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/public/css/admin.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="adminb">
+    <div class="wrap">
+        <div class="left to">
+            <a href="">Добавить</a>
+            <a href="">Калькулятор</a>
+            <div class="models">
+
+                {{!-- @foreach ($lamps as $lamp) --}}
+
+                {{!-- @if ($lamp->global==1) --}}
+                {{!-- <div class="item global"><a class="a" href=""></a></div> --}}
+                {{#each lamps }}
+               
+                 {{#if_eq this.slug ../lamp.slug}}
+                <div class="item global"><a class="a" href="/adminzet/adminpanel/model/{{this.slug}}">{{this.name}}</a>
+                </div>
+                {{else}}
+                <div class="item"><a class="a" href="/adminzet/adminpanel/model/{{this.slug}}">{{this.name}}</a></div>
+                {{/if_eq}}
+               
+                {{/each}}
+
+
+
+                {{!-- @endforeach --}}
+            </div>
+        </div>
+        <div class="rigth">
+            {{{body}}}
+        </div>
+    </div>
+</body>
+
+</html>

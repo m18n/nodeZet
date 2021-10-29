@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="flexzet">
+        <div class="left-zet">
+            <div class="detphoto" id="photodel">
+                {{#each photos }}
+                    <img src="/public/upload/models/{{this}}"  alt="" class="imgphoto" onclick="image(this)">
+                {{/each}}
+             
+                
+            </div>
+            
+        </div>
+        <div class="glphoto">
+              
+                <div class="conphoto" id="photoscale">
+                    <img src="/public/upload/models/{{firs_photo}}" alt="" class="xamdet" id="glimg">
+                </div>
+            </div>
+        <div class="rigth-zet">
+            
+            <div class="xam-text to">
+                <h1 class="hp hxam">{{lamp.name}}</h1>
+                <span >{{{lamp.short_des}}}</span>
+                <h1 class="hp price-det">{{lamp.price}}$</h1>
+                <button class="btn shop buydet"><a href="/model/{{lamp.slug}}/buy" class="aw">Купить</a> </button>
+            </div>
+
+        </div>
+    </div>
+    <span class="to deslamp">{{{lamp.description}}}</span>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="/public/js/main.js"></script>
+    <script type="text/javascript" src="/public/js/scale.js"></script>

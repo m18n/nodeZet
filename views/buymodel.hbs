@@ -1,0 +1,47 @@
+<div class="container">
+
+
+    <div class="fd">
+        <img src="/public/upload/models/{{photo}}" alt="" class="imgbuy">
+        <div class="modelbuy">
+            <form action="/model/{{lamp.slug}}/buy/submit"class="form" method="POST">
+                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <h1 class="hp ">{{lamp.name}}</h1>
+                <p>Количество АКБ:</p>
+                <input type="text" class="startprice" name="price" value="{{lamp.price}}" style="display: none;">
+                <select class="self" name="battery">
+                    {{#each calarr.bat }}
+                        <option value="{{this.name}}/{{this.price}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <p>Зарядное устройство:</p>
+                <select class="self" name="charging">
+                    {{#each calarr.charging }}
+                    <option value="{{this.name}}/{{this.price}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <p>Корпус:</p>
+                <select class="self" name="body">
+                    {{#each calarr.body }}
+                    <option value="{{this.name}}/{{this.price}}">{{this.name}}</option>
+                   {{/each}}
+                </select>
+                <p>Доставка:</p>
+                <select class="self" name="delivery">
+                   {{#each calarr.delivery }}
+                    <option value="{{this.name}}/{{this.price}}">{{this.name}}</option>
+                   {{/each}}
+                </select>
+                <h2 class="ho pricexam">100$</h2>
+                <input type="telephone" placeholder="Номер телефона" name="telephone">
+                <input type="name" placeholder="Имя" name="name">
+                <textarea type="name" placeholder="Примечание" name="note" class="textpr" cols="40" rows="3"></textarea>
+                <button type="submit">Купить</button>
+            </form>
+        </div>
+        <p class="textbuy to">{{{base_compl}}}</p>
+    </div>
+   
+    <script type="text/javascript" src="/public/js/buy.js"></script>
+
+</div>

@@ -1,0 +1,132 @@
+
+.loginb{
+    background-color: #35414F;
+}
+
+.tp{
+    font-family: 'Philosopher', sans-serif;
+    
+}
+.to{
+	font-family: 'Open Sans', sans-serif;
+}
+.a{
+    text-decoration: none;
+    color:black;
+}
+.wel{
+   margin:0px;
+   
+}
+.had{
+    color:white;
+    text-align: center;
+    
+}
+.input{
+    padding: 10px;
+    background-color: #49535D;
+    border-radius: 10px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.input input{
+    background-color: #38424B;
+    outline: none;
+    border:none;
+    color:#DDDEE1;
+    
+    border-radius: 3px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.login-btn{
+    margin-top: 10px;
+    background-color:#3EB9E3;
+    border:none;
+    color:white;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.login{
+    
+    
+    width: 350px;
+    margin:0 auto;
+    margin-top: 15%;
+}
+.left{
+    
+    width: 400px;
+}
+.models{
+    border:solid 1px gray;
+}
+.item{
+    
+    cursor: pointer;
+    border:solid 1px grey;
+}
+.item a{
+    padding: 5px;
+    display: block;
+
+    width: 100%;
+    height: 100%;
+}
+.global{
+    background-color:yellowgreen;
+    
+}
+.rigth{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border:solid 1px grey;
+    width: 100%;
+    margin-left: 10px;
+    
+}
+.wrap{
+    display: flex;
+    flex-direction: row;
+}
+.addmodelh{
+   align-self: center;
+}
+.addform{
+    align-self: center;
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+}
+.addform p{
+    margin:0px;
+}
+.addform *{
+    margin-top: 10px;
+}
+.modeledit{
+    display: flex;
+    flex-direction: column;
+
+}
+.modeledit p{
+    margin:0px;
+}
+.modeledit *{
+    margin-top: 10px;
+}
+.editform{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    align-self: center;
+}

@@ -1,0 +1,24 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel="stylesheet" href="public/css/admin.css">
+     <title>ZetAdmin</title>
+     <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+ </head>
+ <body class="loginb">
+    <div class="login">
+    <h1 class="tp had">ZET Admin</h1>
+            <form action="/adminzet/submit" class="input" method="post">
+                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <input type="username" name="user_name" placeholder="User Name" class="username">
+                <input type="password" name="password" placeholder="Password" class="password">
+                <button class="login-btn" type="submit">Log In</button>
+            </form>
+    </div>
+ </body>
+ </html>

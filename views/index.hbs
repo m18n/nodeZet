@@ -1,0 +1,51 @@
+<div class="back">
+
+    <div class="container">
+        <h2 class="hp tw">Мастер</h2>
+
+        <div class="hd">
+
+
+            <div class="text-e">
+                <h1 class="h1 tw">Производитель подводных фонарей</h1>
+                <h1 class="h1 zet tw">ZET</h1>
+
+
+            </div>
+            <div class="info">
+                <button class="btn shop mag"><a href="" class="aw">Магазин</a> </button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="two-screen">
+    <div class="container">
+        <h1 class="to osnov">{{lamp.name}}</h1>
+
+
+        <div class="model">
+            <div class="left-m">
+
+                <div class="text-m">
+                    <p>{{{lamp.short_des}}}</p>
+                </div>
+                <h1 class="hp price">{{lamp.price}}$</h1>
+                <div class="buypod">
+                    <button class="btn shop buy" id="buy"><a href="/model/{{lamp.slug}}/buy" class="aw">Купить</a>
+                    </button> <br>
+                    <button class="btn pod"><a href="/model/{{lamp.slug}}"
+                            class="aw">Подробнее</a></button>
+                </div>
+            </div>
+            <div class="rigth-m">
+
+                <img src="/public/upload/models/{{ph}}" alt="" class="fon">
+
+            </div>
+        </div>
+
+    </div>
+</div>
