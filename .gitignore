@@ -1,2 +1,6 @@
 config.js
-public/upload/*/
+# exclude everything
+public/upload/*
+
+# exception to the rule
+!public/upload/.gitkeep 
