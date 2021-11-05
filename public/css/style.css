@@ -944,7 +944,7 @@ body{
 	.glphoto{
 		width: 100%;
 		grid-row-start: 1;
-		max-height: 60vh;
+		height: 280px;
 	}
 	.kitbig{
 		display: none;
