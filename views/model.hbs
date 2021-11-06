@@ -3,9 +3,7 @@
         <div class="left-zet">
             <div class="detphoto" id="photodel">
                 {{#each photos }}
-               
-                <img style="background-image: url('/public/upload/models/{{this}}'); " alt="" class="imgphoto" onclick="image(this)">
-
+                    <img src="/public/upload/models/{{this}}"  alt="" class="imgphoto" onclick="image(this)">
                 {{/each}}
              
                 
@@ -15,7 +13,7 @@
         <div class="glphoto">
               
                 <div class="conphoto" id="photoscale">
-                    <img style="background-image: url('/public/upload/models/{{firs_photo}}'); height: img-height();"  alt="" class="xamdet" id="glimg">
+                    <img src="/public/upload/models/{{firs_photo}}" alt="" class="xamdet" id="glimg">
                 </div>
             </div>
         <div class="rigth-zet">
@@ -34,4 +32,3 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/public/js/main.js"></script>
     <script type="text/javascript" src="/public/js/scale.js"></script>
-    <script type="text/javascript" src="/public/js/imguploadevent.js"></script>
