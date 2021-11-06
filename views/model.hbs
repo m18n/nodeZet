@@ -3,7 +3,10 @@
         <div class="left-zet">
             <div class="detphoto" id="photodel">
                 {{#each photos }}
-                    <img src="/public/upload/models/{{this}}"  alt="" class="imgphoto" onclick="image(this)">
+                    {{!-- <div class="testload">
+                        <div class="loadertt"></div> --}}
+                        <img src="/public/upload/models/{{this}}"  alt="" class="imgphoto" onclick="image(this)">
+                    {{!-- </div> --}}
                 {{/each}}
              
                 

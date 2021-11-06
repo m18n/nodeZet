@@ -2,15 +2,38 @@
 
 <body>
 	<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QVB4XM"
-	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5QVB4XM" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
 	<!-- End Google Tag Manager (noscript) -->
-	
+
 	{{> navbarmodel}}
-    <main>
-        {{{body}}}
-    </main>
-    
+	<main>
+		<div class="simplee" style="display: none;">
+		<div class="loaderdiv" id="loaderdiv">
+			<div class="loader" id="startloader">
+				<div class="cssload-thecube">
+					<div class="cssload-cube cssload-c1"></div>
+					<div class="cssload-cube cssload-c2"></div>
+					<div class="cssload-cube cssload-c4"></div>
+					<div class="cssload-cube cssload-c3"></div>
+				</div>
+
+			</div>
+		</div>
+		</div>
+		{{!-- <div class="loadrs" id="loaders">
+			<div class="loader" id="startloader">
+				<div class="cssload-thecube">
+					<div class="cssload-cube cssload-c1"></div>
+					<div class="cssload-cube cssload-c2"></div>
+					<div class="cssload-cube cssload-c4"></div>
+					<div class="cssload-cube cssload-c3"></div>
+				</div>
+			</div>
+		</div> --}}
+		{{{body}}}
+	</main>
+
 	<footer class="detalfooter">
 		<div class="infofooter">
 			<div class="container">
@@ -18,19 +41,23 @@
 				<h3 class="email ho tw">zzzkmua@gmail.com</h3>
 				<div class="line"></div>
 				<div class="ico">
-					<a href="https://www.instagram.com/fonarzet/"><img src="/public/img/inst.png" alt="" class="inst"></a>
-					<a href="https://www.facebook.com/evgen.pev"><img src="/public/img/face.png" alt="" class="face"></a>
-					<a href="https://www.youtube.com/channel/UC0E7bophSSwiUsaDL2qdnBA"><img src="/public/img/youtube.png" alt="" class="inst"></a>
+					<a href="https://www.instagram.com/fonarzet/"><img src="/public/img/inst.png" alt=""
+							class="inst"></a>
+					<a href="https://www.facebook.com/evgen.pev"><img src="/public/img/face.png" alt=""
+							class="face"></a>
+					<a href="https://www.youtube.com/channel/UC0E7bophSSwiUsaDL2qdnBA"><img
+							src="/public/img/youtube.png" alt="" class="inst"></a>
 				</div>
 			</div>
 		</div>
 		<div class="zetfooter">
-			<h4 class="ho tw" >ZET</h4>
+			<h4 class="ho tw">ZET</h4>
 		</div>
 	</footer>
 
 	<script type="text/javascript" src="/public/js/burger.js"></script>
 	<script type="text/javascript" src="/public/js/header-model.js"></script>
-	
+	<script type="text/javascript" src="/public/js/imdloadevent.js"></script>
 </body>
+
 </html>
