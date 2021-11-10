@@ -1,1 +1,25 @@
-HELLO
+<div class="modeledit">
+    <form action="/adminzet/adminpanel/calculator/{{cal.slug}}/editsubmit" method="POST" class="editform">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="text" placeholder="Имя" name="name" value="{{cal.name}}">
+        <p>АКБ</p>
+        <textarea name="battery" cols="40" rows="3" placeholder="АКБ Название ячейки:цена">{{cal.battery}}</textarea>
+        <p>Зарядка</p>
+        <textarea name="charging" cols="40" rows="3"
+            placeholder="Зарядка Название ячейки:цена">{{cal.charging}}</textarea>
+        <p>Корпус</p>
+        <textarea name="body" cols="40" rows="3" placeholder="Корпус Название ячейки:цена">{{cal.body}}</textarea>
+        <p>Доставка</p>
+        <textarea name="delivery" cols="40" rows="3"
+            placeholder="Доставка Название ячейки:цена">{{cal.delivery}}</textarea>
+        <p>Базовый комплект</p>
+        <textarea name="base_compl" cols="40" rows="3" placeholder="Базовый комплект">{{cal.base_compl}}</textarea>
+        <p>Ссылка</p>
+        <input type="text" placeholder="ссылка" name="slug" value="{{cal.slug}}">
+        <button type="submit">Изменить</button>
+    </form>
+    <form action="" method="POST">
+
+        <button>Удалить Калькулятор</button>
+    </form>
+</div>
