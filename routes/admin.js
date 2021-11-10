@@ -109,9 +109,9 @@ router.post('/adminpanel/model/:model/editsubmit',upload.array('photos'), authMi
     sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/model/"+sch[s].GetVar("slug"))
 })
-router.get('/adminpanel/calulator', authMiddleware,calMiddleware, async (req, res) => {
+router.get('/adminpanel/calculators', authMiddleware,calMiddleware, async (req, res) => {
 
-    res.render('admincal.hbs', { layout: 'admin'})
+    res.render('admincal.hbs', { layout: 'admincal'})
 
 });
 module.exports = router
