@@ -25,12 +25,12 @@
                 {{!-- @if ($lamp->global==1) --}}
                 {{!-- <div class="item global"><a class="a" href=""></a></div> --}}
                 {{#each lamps }}
-               
-                 {{#if_eq this.slug ../lamp.slug}}
-                <div class="item global"><a class="a" href="/adminzet/adminpanel/model/{{this.slug}}">{{this.name}}</a>
+                
+                 {{#if_eq this.slug ../cal.slug}}
+                <div class="item global"><a class="a" href="/adminzet/adminpanel/calculator/{{this.slug}}">{{this.name}}</a>
                 </div>
                 {{else}}
-                <div class="item"><a class="a" href="/adminzet/adminpanel/model/{{this.slug}}">{{this.name}}</a></div>
+                <div class="item"><a class="a" href="/adminzet/adminpanel/calculator/{{this.slug}}">{{this.name}}</a></div>
                 {{/if_eq}}
                
                 {{/each}}

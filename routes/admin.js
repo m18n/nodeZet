@@ -107,7 +107,7 @@ router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authM
         sch[s].DeleteVar("photo")
     else
         sch[s].SetVar("photo", path)
-    sch[s].SynchrAllSetServer()
+    await sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
 })
 router.get('/adminpanel/calculators', authMiddleware, calMiddleware, async (req, res) => {
@@ -115,4 +115,49 @@ router.get('/adminpanel/calculators', authMiddleware, calMiddleware, async (req,
     res.render('admincal.hbs', { layout: 'admincal' })
 
 });
+router.get('/adminpanel/calculator/:model', authMiddleware, calMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    let cal=sch[s].GetObjectAll()
+    
+    
+    res.render('admincalmodel.hbs', { layout: 'admincal',cal:cal})
+})
+router.post('/adminpanel/calculator/:model/editsubmit', authMiddleware, calMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    //name battery charging body delivery base_compl slug
+    sch[s].SetVar("name",req.body.name)
+    sch[s].SetVar("battery",req.body.battery)
+    sch[s].SetVar("body",req.body.body)
+    sch[s].SetVar("delivery",req.body.delivery)
+    sch[s].SetVar("base_compl",req.body.base_compl)
+    sch[s].SetVar("slug",req.body.slug)
+    await sch[s].SynchrAllSetServer()
+    res.redirect("/adminzet/adminpanel/calculator/" + sch[s].GetVar("slug"))
+})
 module.exports = router
