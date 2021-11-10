@@ -115,4 +115,24 @@ router.get('/adminpanel/calculators', authMiddleware, calMiddleware, async (req,
     res.render('admincal.hbs', { layout: 'admincal' })
 
 });
+router.get('/adminpanel/calculator/:model', authMiddleware, calMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    let cal=sch[s].GetObjectAll()
+    
+    
+    res.render('admincalmodel.hbs', { layout: 'admincal',cal:cal})
+})
 module.exports = router
