@@ -5,8 +5,8 @@ class Admin {
     }
     async SynchrLoginGetServer() {
         try {
-            this.login = await conn.execute("SELECT login FROM admins");
-            this.login = this.login[0][0].login;
+            this.login = await conn.execute("SELECT user_name FROM admins");
+            this.login = this.login[0][0].user_name;
             return this.login;
 
         } catch (e) {
@@ -16,14 +16,14 @@ class Admin {
     }
     async Auth(logine, password) {
         try {
-            let test = await conn.execute('SELECT * FROM admins WHERE login = \'' + logine + '\';');
+            let test = await conn.execute('SELECT * FROM admins WHERE user_name = \'' + logine + '\';');
             if (!test[0][0])//none login
                return -1;
             console.log(test[0][0]);
             const validpassword= bcrypt.compareSync(password,test[0][0].password);
             if(!validpassword)
                 return -1;
-            this.login=test[0][0].login;
+            this.login=test[0][0].user_name;
             this.password=test[0][0].password;
             this.id=test[0][0].id;
             return this.id;

@@ -86,6 +86,7 @@ class schema {
             }
         }
     }
+   
     async SynchrAllSetServer(){
         try {
             if (this.id == -1) {

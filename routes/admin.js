@@ -3,11 +3,12 @@ const router = Router()
 const admin = require('../model/admin')
 const jwt = require('jsonwebtoken')
 const csrf = require('csurf')
-const lamp = require('../model/lamp')
+
 const config = require('../config')
 const base = require('../model/base')
 var csrfProtection = csrf({ cookie: true })
 const authMiddleware = require('../middlewarre/authmidl')
+const calMiddleware = require('../middlewarre/admin-calmidl')
 const adminMiddleware = require('../middlewarre/admin-modelmidl')
 const multer  = require('multer')
 const upload=multer({dest:"public/upload/models/"})
@@ -26,7 +27,7 @@ router.get('/', csrfProtection, async (req, res) => {
 })
 router.post('/submit', csrfProtection, async (req, res) => {
     ad = new admin.Admin();
-
+    
     const id = await ad.Auth(req.body.user_name, req.body.password)
     if (id == -1)
         res.redirect("/adminzet")
@@ -108,4 +109,9 @@ router.post('/adminpanel/model/:model/editsubmit',upload.array('photos'), authMi
     sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/model/"+sch[s].GetVar("slug"))
 })
+router.get('/adminpanel/calculators', authMiddleware,calMiddleware, async (req, res) => {
+
+    res.render('admincal.hbs', { layout: 'admincal'})
+
+});
 module.exports = router
