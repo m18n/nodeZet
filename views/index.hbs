@@ -28,16 +28,16 @@
 
         <div class="model">
             <div class="left-m">
-
-                <div class="text-m">
-                    <p>{{{lamp.short_des}}}</p>
+                <div class="infor">
+                    <div class="text-m">
+                        <p>{{{lamp.short_des}}}</p>
+                    </div>
+                    <h1 class="hp price">{{lamp.price}}$</h1>
                 </div>
-                <h1 class="hp price">{{lamp.price}}$</h1>
                 <div class="buypod">
                     <button class="btn shop buy" id="buy"><a href="/model/{{lamp.slug}}/buy" class="aw">Купить</a>
                     </button> <br>
-                    <button class="btn pod"><a href="/model/{{lamp.slug}}"
-                            class="aw">Подробнее</a></button>
+                    <button class="btn pod"><a href="/model/{{lamp.slug}}" class="aw">Подробнее</a></button>
                 </div>
             </div>
             <div class="rigth-m">
