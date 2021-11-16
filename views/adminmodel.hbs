@@ -13,8 +13,8 @@ MODEL {{lamp.name}}
             <input name="photos" type="file" multiple>
             <p class="to">Цена</p>
             <input type="number" name="price" id="" placeholder="Цена" value="{{lamp.price}}">
-            
-            <select name="cal" id="">
+          
+            <select name="cal" id="" translate="no"> 
                 
                <option>{{cal}}</option>
                 {{!-- @foreach ($cals as $cal)
@@ -24,7 +24,7 @@ MODEL {{lamp.name}}
                     <option>{{this}}</option>
                 {{/each}}
             </select>
-          
+        
             
 
             {{#if_eq lamp.global 1}}
@@ -34,7 +34,7 @@ MODEL {{lamp.name}}
             Главная модель<input type="checkbox" name="global">
             {{/if_eq}}
            
-            <button type="submit">Изменить модель</button>
+            <button type="submit">Изменить модельn</button>
         </form>
         <form action="" method="POST" >
            
