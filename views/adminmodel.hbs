@@ -13,7 +13,7 @@ MODEL {{lamp.name}}
             <input name="photos" type="file" multiple>
             <p class="to">Цена</p>
             <input type="number" name="price" id="" placeholder="Цена" value="{{lamp.price}}">
-            
+           <nobr>
             <select name="cal" id="">
                 
                <option>{{cal}}</option>
@@ -24,7 +24,7 @@ MODEL {{lamp.name}}
                     <option>{{this}}</option>
                 {{/each}}
             </select>
-          
+          </nobr> 
             
 
             {{#if_eq lamp.global 1}}
