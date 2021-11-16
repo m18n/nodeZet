@@ -80,7 +80,7 @@ router.get("/model/:model/buy", csrfProtection, async (req, res) => {
 
 
 SendTelegram = (id, text) => {
-    https.get("https://api.telegram.org/bot934678082:AAGo8zfKyEZ8rQUO8NpEzC7feq1p_3HvNqA/sendMessage?chat_id=" + id + "git&text=" + text, res => {
+    https.get("https://api.telegram.org/bot934678082:AAGqbOr6By7qaWljmkUNXDMqvLR79z4hA0Q/sendMessage?chat_id=" + id + "git&text=" + text, res => {
         console.log("SEND")
         console.log(`statusCode: ${res.statusCode}`)
 
