@@ -1,17 +1,20 @@
 <div class="container">
     <div class="models">
+        {{#each lamp}}
         <div class="items-model">
 
-          
+            
             <a href="" class="a item-model">
-                <img src="" alt="">
-                <h2 class="name-model"></h2>
-                <h1 class="price-model"></h1>
+                <img src="/public/upload/models/{{this.photo}}" alt="">
+                <h1 class="price-model">{{this.price}}$</h1>
+                <h2 class="name-model">{{this.name}}</h2>
+                
             </a>
-       
-       
-      
-    </div>
-    
+
+            
+
+        </div>
+        {{/each}}
+         
     </div>
 </div>
