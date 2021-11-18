@@ -26,8 +26,19 @@ router.get("/", async (req, res) => {
         res.render("index", { title: "Zet", ph: photo, lamp: obj })
     }
 })
-router.get("/shop", (req, res) => {
-    res.render("shop", { title: "Zet Shop", layout: 'model' })
+router.get("/shop",async (req, res) => {
+    lamp=await base.schema.StaticGetAll("lamps");
+    let objlamp=[];
+    for(let i=0;i<lamp.length;i++){
+        await lamp[i].SynchrAllGetServer();
+        objlamp[i]=lamp[i].GetObjectAll();
+        let photos = objlamp[i].photo.split('\n')
+        photos.length = photos.length - 1;
+        objlamp[i].photo=photos[0];
+    }
+    
+   
+    res.render("shop", { title: "Zet Shop", layout: 'model',lamp:objlamp })
 })
 router.get("/model/:model", async (req, res) => {
     lamp = await base.schema.StaticGetWhere("lamps", "slug", req.params.model)
