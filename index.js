@@ -4,7 +4,7 @@ const mainroute=require('./routes/main')
 const adminRoutes=require("./routes/admin")
 var cookieParser = require('cookie-parser')
 const config = require('./config')
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 9999
 const app = express()
 const hbs=exphbs.create({
     defaultLayout:'main',
@@ -22,7 +22,7 @@ app.use(mainroute)
 app.use('/adminzet',adminRoutes)
 conn=0
 vasa=23
-console.log("START\n");
+
 
 async function StartAPP() {
     const mysql = require('mysql2/promise');
