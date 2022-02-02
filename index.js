@@ -22,11 +22,11 @@ app.use(mainroute)
 app.use('/adminzet',adminRoutes)
 conn=0
 vasa=23
-
+console.log("START\n");
 
 async function StartAPP() {
     const mysql = require('mysql2/promise');
-
+   
     conn = await mysql.createConnection({
         host: "localhost",
         user: "root",

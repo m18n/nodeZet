@@ -10,19 +10,26 @@ var csrfProtection = csrf({ cookie: true })
 router.get("/", async (req, res) => {
 
     lamp = await base.schema.StaticGetWhere("lamps", "global", 1)
+  
     if (!lamp[0]) {
+        console.log("LAMP");
         res.render("index", { title: "Zet" })
     } else {
+        
         await lamp[0].SynchrAllGetServer()
         let obj = lamp[0].GetObjectAll()
         let index = 0
-        while (true) {
-            if (obj.photo[index] == '\n')
-                break;
-            index++;
+        console.log("LAMP2");
+        if(obj.photo!=""){
+            while (true) {
+                if (obj.photo[index] == '\n')
+                    break;
+                index++;
+            }
         }
+        
         photo = obj.photo.substring(0, index);
-
+        
         res.render("index", { title: "Zet", ph: photo, lamp: obj })
     }
 })
@@ -54,7 +61,9 @@ router.get("/model/:model", async (req, res) => {
 })
 ParseCal = (str) => {
     let obj = []
-
+    console.log("STR "+str)
+    if(str==null)
+        return obj;
     let strs = str.split('\n')
     obj.length = strs.length
     for (let i = 0; i < strs.length; i++) {
@@ -72,13 +81,16 @@ router.get("/model/:model/buy", csrfProtection, async (req, res) => {
     await lamp[0].SynchrAllGetServer()
     let obj = lamp[0].GetObjectAll()
     let index = 0
+    if(obj.photo!=""){
     while (true) {
         if (obj.photo[index] == '\n')
             break;
         index++;
     }
+}
     photo = obj.photo.substring(0, index);
     cal = await base.schema.StaticGetWhere("calculators", "id", obj.calculator_id)
+    if(cal.length!=0){
     await cal[0].SynchrAllGetServer()
     let calarr = {}
     calarr.bat = ParseCal(cal[0].GetVar("battery"))
@@ -87,6 +99,8 @@ router.get("/model/:model/buy", csrfProtection, async (req, res) => {
     calarr.delivery = ParseCal(cal[0].GetVar("delivery"))
 
     res.render('buymodel', { layout: 'model', lamp: obj, title: lamp[0].GetVar("name") + " купить", calarr: calarr, photo: photo, csrfToken: req.csrfToken(), base_compl: cal[0].GetVar("base_compl") })
+    }else
+        res.render("error")
 })
 
 

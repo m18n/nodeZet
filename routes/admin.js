@@ -66,15 +66,19 @@ router.get('/adminpanel/model/:model', authMiddleware, adminMiddleware, async (r
 
     let cal = await base.schema.StaticGetAll("calculators")
     let headcal = [];
-    let ide = 0
+    let ide = -1
     for (let i = 0; i < cal.length; i++) {
         await cal[i].SynchrAllGetServer()
         headcal.push(cal[i].GetVar("name"))
         if (cal[i].GetVar("id") == sch[s].GetVar("calculator_id"))
             ide = i
     }
+    let name;
+    if(ide!=-1){
     headcal.splice(ide, 1)
-    res.render('adminmodel.hbs', { layout: 'admin', lamp: obje, cals: headcal, cal: cal[ide].GetVar("name") })
+    name=cal[ide].GetVar("name");
+    }
+    res.render('adminmodel.hbs', { layout: 'admin', lamp: obje, cals: headcal, cal: name })
 })
 router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authMiddleware, adminMiddleware, async (req, res) => {
 
@@ -97,8 +101,12 @@ router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authM
     sch[s].SetVar("short_des", req.body.short_des)
     sch[s].SetVar("slug", req.body.slug)
     sch[s].SetVar("price", req.body.price)
-    let cal = await base.schema.StaticGetWhere("calculators", "name", req.body.cal)
-    sch[s].SetVar("calculator_id", cal[0]._id)
+    if(req.body.cal){
+        let cal = await base.schema.StaticGetWhere("calculators", "name", req.body.cal)  
+        sch[s].SetVar("calculator_id", cal[0]._id)
+    }else{
+        sch[s].SetVar("calculator_id", "-1")
+    }
     if (req.body.global)
         sch[s].SetVar("global", 1)
     else

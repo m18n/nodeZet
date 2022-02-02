@@ -4,3 +4,4 @@ public/upload/*
 
 # exception to the rule
 !public/upload/.gitkeep 
+node_modules/*
