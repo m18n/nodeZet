@@ -33,6 +33,7 @@ header{
 	display: flex;
 	align-items: center;
 }
+
 /*LOADER START*/
 .loadrs{
 
@@ -476,6 +477,7 @@ header{
 	flex-wrap: wrap-reverse;
 	justify-content: space-between;
 	margin-top:15vh;
+	align-items: center;
 	margin-bottom:20vh;
 }
 .rigth-m{
@@ -483,11 +485,12 @@ header{
 	justify-content: flex-end;
 	position: relative;
 	width: 450px;
-	
-	
+	height: 40%;
+	margin-bottom: 20%;
 }
 .left-m{
-
+	display: flex;
+	flex-wrap: wrap;
 	width: 500px;
 	
 }
@@ -992,7 +995,7 @@ body{
 	.left-m{
 		margin-top: 5%;
 		width: 90%;
-	
+		flex-wrap:wrap-reverse;
 	}
 	
 	.model{
