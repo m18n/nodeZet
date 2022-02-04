@@ -80,6 +80,60 @@ router.get('/adminpanel/model/:model', authMiddleware, adminMiddleware, async (r
     }
     res.render('adminmodel.hbs', { layout: 'admin', lamp: obje, cals: headcal, cal: name })
 })
+router.get('/adminpanel/addmodel', authMiddleware, adminMiddleware, async (req, res) => {
+
+   
+
+    
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    
+    let cal = await base.schema.StaticGetAll("calculators")
+    let headcal = [];
+    for (let i = 0; i < cal.length; i++) {
+        await cal[i].SynchrAllGetServer()
+        headcal.push(cal[i].GetVar("name"))
+    }
+   
+    res.render('adminaddmodel.hbs', { layout: 'admin', cals: headcal })
+})
+router.post('/adminpanel/addmodelsubmit', upload.array('photos'), authMiddleware, adminMiddleware, async (req, res) => {
+
+   
+
+    
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    let sc= new base.schema();
+    sc.nametable="lamps"
+    let path = "";
+    for (let i = 0; i < req.files.length; i++) {
+        path += req.files[i].filename + "\n"
+    }
+    sc.AddVar("name", req.body.name)
+    sc.AddVar("description", req.body.des)
+    sc.AddVar("short_des", req.body.short_des)
+    sc.AddVar("slug", req.body.slug)
+    sc.AddVar("price", req.body.price)
+    if(req.body.cal){
+        let cal = await base.schema.StaticGetWhere("calculators", "name", req.body.cal)  
+        sc.AddVar("calculator_id", cal[0]._id)
+    }else{
+        sc.AddVar("calculator_id", "-1")
+    }
+    if (req.body.global)
+        sc.AddVar("global", 1)
+    else
+        sc.AddVar("global", 0)
+    if (path != "")
+        sc.AddVar("photo", path)
+    await sc.CreateObjectServer()
+    res.redirect("/adminzet/adminpanel/model/" + sc.GetVar("slug"))
+})
 router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authMiddleware, adminMiddleware, async (req, res) => {
 
     let s = -1
@@ -118,6 +172,21 @@ router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authM
     await sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
 })
+router.post('/adminpanel/model/:model/delete', authMiddleware, adminMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+
+    await sch[s].DeleteObject()
+    res.redirect("/adminzet/adminpanel")
+})
 router.get('/adminpanel/calculators', authMiddleware, calMiddleware, async (req, res) => {
 
     res.render('admincal.hbs', { layout: 'admincal' })
@@ -142,6 +211,36 @@ router.get('/adminpanel/calculator/:model', authMiddleware, calMiddleware, async
     
     
     res.render('admincalmodel.hbs', { layout: 'admincal',cal:cal})
+})
+router.get('/adminpanel/addcal', authMiddleware, calMiddleware, async (req, res) => {
+
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    
+    
+    
+    res.render('adminaddcal.hbs', { layout: 'admincal'})
+})
+router.post('/adminpanel/addcalsubmit', authMiddleware, calMiddleware, async (req, res) => {
+
+    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
+    // 
+    // let clobj=obje.calculator_id.GetObjectAll()
+    // obje.calculator_id=clobj
+    console.log("CONSSS")
+    let sc=new base.schema();
+    sc.nametable="calculators"
+    sc.AddVar("name",req.body.name)
+    sc.AddVar("battery",req.body.battery)
+    sc.AddVar("body",req.body.body)
+    sc.AddVar("delivery",req.body.delivery)
+    sc.AddVar("base_compl",req.body.base_compl)
+    sc.AddVar("slug",req.body.slug)
+    sc.AddVar("charging",req.body.charging)
+    await sc.CreateObjectServer()
+    res.redirect("/adminzet/adminpanel/calculator/" + sc.GetVar("slug"))
 })
 router.post('/adminpanel/calculator/:model/editsubmit', authMiddleware, calMiddleware, async (req, res) => {
 
@@ -168,5 +267,19 @@ router.post('/adminpanel/calculator/:model/editsubmit', authMiddleware, calMiddl
     sch[s].SetVar("charging",req.body.charging)
     await sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/calculator/" + sch[s].GetVar("slug"))
+})
+router.post('/adminpanel/calculator/:model/delete', authMiddleware, calMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    await sch[s].DeleteObject();
+    res.redirect("/adminzet/adminpanel/calculators")
 })
 module.exports = router

@@ -1,0 +1,22 @@
+<h1 style="text-align: center;">Добавить Калькулятор</h1>
+<div class="modeledit">
+    <form action="/adminzet/adminpanel/addcalsubmit" method="POST" class="editform">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="text" placeholder="Имя" name="name" value="">
+        <p>АКБ</p>
+        <textarea name="battery" cols="40" rows="3" placeholder="АКБ Название ячейки:цена"></textarea>
+        <p>Зарядка</p>
+        <textarea name="charging" cols="40" rows="3"
+            placeholder="Зарядка Название ячейки:цена"></textarea>
+        <p>Корпус</p>
+        <textarea name="body" cols="40" rows="3" placeholder="Корпус Название ячейки:цена"></textarea>
+        <p>Доставка</p>
+        <textarea name="delivery" cols="40" rows="3"
+            placeholder="Доставка Название ячейки:цена"></textarea>
+        <p>Базовый комплект</p>
+        <textarea name="base_compl" cols="40" rows="3" placeholder="Базовый комплект"></textarea>
+        <p>Ссылка</p>
+        <input type="text" placeholder="ссылка" name="slug" value="">
+        <button type="submit">Добавить</button>
+    </form>
+</div>
