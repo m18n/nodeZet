@@ -486,7 +486,7 @@ header{
 	position: relative;
 	width: 450px;
 	height: 40%;
-	margin-bottom: 20%;
+	
 }
 .left-m{
 	display: flex;
@@ -997,7 +997,9 @@ body{
 		width: 90%;
 		flex-wrap:wrap-reverse;
 	}
-	
+	.rigth-m{
+		margin-bottom: 0px;
+	}
 	.model{
 		justify-content: center;
 	}
