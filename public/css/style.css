@@ -1142,7 +1142,7 @@ body{
 		border-radius: 10px;
 	}
 	.left-zet{
-		flex-direction: column-reverse;
+		flex-direction: column;
 		width: 100%;
 		grid-row-start: 2;
 	}
