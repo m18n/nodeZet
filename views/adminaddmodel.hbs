@@ -1,0 +1,34 @@
+<h1 style="text-align: center;">ADDMODEL</h1>
+<div class="modeledit">
+        <form action="/adminzet/adminpanel/addmodelsubmit" enctype="multipart/form-data" method="POST" class="editform" >
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="name" placeholder="Имя" name="name" >
+            <p class="to">Описание</p>
+            <textarea name="des" cols="40" rows="3" placeholder="Описание" ></textarea>
+            <p class="to">Описание короткое</p>
+            <textarea name="short_des" cols="40" rows="3" placeholder="Описание короткое"></textarea>
+            <p class="to">Ссылка</p>
+            <input type="text" placeholder="ссылка" name="slug" value="">
+            <input name="photos" type="file" multiple>
+            <p class="to">Цена</p>
+            <input type="number" name="price" id="" placeholder="Цена" value="">
+          
+            <select name="cal" id="" translate="no"> 
+                
+               
+                {{#each cals }}
+                    <option>{{this}}</option>
+                {{/each}}
+            </select>
+        
+            
+
+            
+            
+          
+            Главная модель<input type="checkbox" name="global">
+            
+           
+            <button type="submit">Добавить модель</button>
+        </form>
+    </div>
