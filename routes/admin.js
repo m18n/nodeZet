@@ -172,7 +172,21 @@ router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authM
     await sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
 })
+router.post('/adminpanel/model/:model/delete', authMiddleware, adminMiddleware, async (req, res) => {
 
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+
+    await sch[s].DeleteObject()
+    res.redirect("/adminzet/adminpanel")
+})
 router.get('/adminpanel/calculators', authMiddleware, calMiddleware, async (req, res) => {
 
     res.render('admincal.hbs', { layout: 'admincal' })
@@ -253,5 +267,19 @@ router.post('/adminpanel/calculator/:model/editsubmit', authMiddleware, calMiddl
     sch[s].SetVar("charging",req.body.charging)
     await sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/calculator/" + sch[s].GetVar("slug"))
+})
+router.post('/adminpanel/calculator/:model/delete', authMiddleware, calMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    await sch[s].DeleteObject();
+    res.redirect("/adminzet/adminpanel/calculators")
 })
 module.exports = router

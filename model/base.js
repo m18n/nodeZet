@@ -243,6 +243,16 @@ class schema {
             console.log(e);
         }
     }
+    async DeleteObject(){
+        try{
+            let str="DELETE FROM "+this.nametable+" WHERE id="+this.id;
+            let ot =await conn.execute(str);
+            if (!ot) 
+                console.log("ERROR DELETE")
+        }catch(e){
+            console.log(e);
+        }
+    }
 }
 module.exports.cell = cell
 module.exports.schema = schema
