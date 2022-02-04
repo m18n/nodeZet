@@ -165,6 +165,7 @@ router.post('/adminpanel/calculator/:model/editsubmit', authMiddleware, calMiddl
     sch[s].SetVar("delivery",req.body.delivery)
     sch[s].SetVar("base_compl",req.body.base_compl)
     sch[s].SetVar("slug",req.body.slug)
+    sch[s].SetVar("charging",req.body.charging)
     await sch[s].SynchrAllSetServer()
     res.redirect("/adminzet/adminpanel/calculator/" + sch[s].GetVar("slug"))
 })
