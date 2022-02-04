@@ -129,8 +129,8 @@ router.post('/adminpanel/addmodelsubmit', upload.array('photos'), authMiddleware
         sc.AddVar("global", 1)
     else
         sc.AddVar("global", 0)
-    if (path != "")
-        sc.AddVar("photo", path)
+    sc.AddVar("photo", path)
+    
     await sc.CreateObjectServer()
     res.redirect("/adminzet/adminpanel/model/" + sc.GetVar("slug"))
 })
