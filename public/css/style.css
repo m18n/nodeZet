@@ -376,7 +376,9 @@ header{
 	align-self: flex-end;
 }
 
-
+.bug{
+	width: 100%;
+}
 
 
 .h1{
@@ -1185,7 +1187,8 @@ body{
 
 	}
 	.buypod{
-		width: 400px;
+		width: 90%;
+		margin-top: 20px;
 	}
 	.mag{
 		display: none;
@@ -1213,9 +1216,7 @@ body{
 	
 	
 	
-	.buypod{
-		margin-top: 20px;
-	}
+	
 	
 }
 @media only screen and (max-width: 490px){
@@ -1227,8 +1228,6 @@ body{
 	}
 	.buypod{
 		width: 100%;
-		height: 60px;
-		
 	}
 	.buypod a{
 		font-size: 20px;
