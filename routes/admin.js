@@ -133,6 +133,123 @@ router.post('/adminpanel/addmodelsubmit', upload.array('photos'), authMiddleware
     await sc.CreateObjectServer()
     res.redirect("/adminzet/adminpanel/model/" + sc.GetVar("slug"))
 })
+router.get('/adminpanel/model/:model/deleteallphoto', authMiddleware, adminMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    sch[s].SetVar("photo","")
+    await sch[s].SynchrVarSetServer("photo");
+    res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
+})
+router.get('/adminpanel/model/:model/photo/:index/delete', authMiddleware, adminMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+        
+   
+    let photo=sch[s].GetVar("photo")
+    console.log("PHOTOOO: \n"+photo);
+    let photos = photo.split('\n');
+    photos.length = photos.length - 1;
+    photos.splice(req.params.index, 1); 
+    let photostr="";
+    for(let i=0;i<photos.length;i++){
+        photostr+=photos[i]+"\n";
+    
+    }
+    sch[s].SetVar("photo",photostr);
+    await sch[s].SynchrVarSetServer("photo");
+    res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
+})
+router.get('/adminpanel/model/:model/photo/:index/up', authMiddleware, adminMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    let index=parseInt(req.params.index);
+    
+    if(index!=0){
+        let photo=sch[s].GetVar("photo")
+        console.log("PHOTOOO: \n"+photo);
+        let photos = photo.split('\n');
+        photos.length = photos.length - 1;
+       
+        
+        let temp=photos[index];
+        photos[index]=photos[index-1];
+        photos[index-1]=temp;
+
+        let photostr="";
+        for(let i=0;i<photos.length;i++){
+            photostr+=photos[i]+"\n";
+        
+        }
+
+        sch[s].SetVar("photo",photostr);
+        await sch[s].SynchrVarSetServer("photo");
+    }
+    res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
+})
+router.get('/adminpanel/model/:model/photo/:index/down', authMiddleware, adminMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    let index=parseInt(req.params.index);
+    
+        let photo=sch[s].GetVar("photo")
+        console.log("PHOTOOO: \n"+photo);
+        let photos = photo.split('\n');
+        photos.length = photos.length - 1;
+    
+    if(index!=photos.length-1){
+        for(let i=0;i<photos.length;i++){
+            console.log("i: "+i+" Photo: "+photos[i]+"\n");
+            
+        }
+        let tempe=photos[index];
+       
+        photos[index]=photos[index+1];
+        photos[index+1]=tempe;
+       
+        let photostr="";
+        for(let i=0;i<photos.length;i++){
+            photostr+=photos[i]+"\n";
+        
+        }
+        
+        console.log("PHOTOSTR: "+photostr+"\n");
+        sch[s].SetVar("photo",photostr);
+        await sch[s].SynchrVarSetServer("photo");
+    }
+    res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
+})
 router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authMiddleware, adminMiddleware, async (req, res) => {
 
     let s = -1
@@ -169,6 +286,35 @@ router.post('/adminpanel/model/:model/editsubmit', upload.array('photos'), authM
     else
         sch[s].SetVar("photo", path)
     await sch[s].SynchrAllSetServer()
+    res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
+})
+
+router.post('/adminpanel/model/:model/photo/:index/editphoto', upload.single('photo'), authMiddleware, adminMiddleware, async (req, res) => {
+
+    let s = -1
+    for (let i = 0; i < sch.length; i++) {
+        if (sch[i].GetVar("slug") == req.params.model) {
+            s = i
+            break;
+        }
+    }
+    if (s == -1)
+        res.send("Error Model")
+    let photo=sch[s].GetVar("photo")
+    let photos = photo.split('\n');
+    photos.length = photos.length - 1;
+    let index=parseInt(req.params.index);
+    console.log("EDIT");
+
+    console.log(req.file.filename);
+    photos[index]=req.file.filename;
+    let photostr="";
+    for(let i=0;i<photos.length;i++){
+        photostr+=photos[i]+"\n"; 
+    }
+
+    sch[s].SetVar("photo",photostr);
+    await sch[s].SynchrVarSetServer("photo");
     res.redirect("/adminzet/adminpanel/model/" + sch[s].GetVar("slug"))
 })
 router.post('/adminpanel/model/:model/delete', authMiddleware, adminMiddleware, async (req, res) => {

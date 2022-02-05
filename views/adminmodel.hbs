@@ -15,16 +15,23 @@ MODEL {{lamp.name}}
                 
                 <a href="/adminzet/adminpanel/model/{{lamp.slug}}/deleteallphoto">DELETE ALL</a>
                
-           {{#each photo}}
-                <img src="/public/upload/models/{{this}}" alt="">
-                <form action="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/editphoto" enctype="multipart/form-data" method="POST">
-                    <button type="submit">Изменить</button>
-                </form>
-                <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/delete">DELETE</a>
-                <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/up">↑</a>
-                 <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/down">↓</a>
+                {{#each photo}}
+                    
+                        <img src="/public/upload/models/{{this}}" alt="">
+                      
+                        <form action="/adminzet/adminpanel/model/{{../lamp.slug}}/photo/{{@index}}/editphoto" enctype="multipart/form-data" method="POST">
+                            <input name="photo" type="file" >
+                            <button type="submit">Изменить</button>
+                            
+                        </form>
+                
+                        <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/photo/{{@index}}/delete">DELETE</a>
+                        <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/photo/{{@index}}/up">↑</a>
+                        <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/photo/{{@index}}/down">↓</a>
             {{/each}}
+                
             </div>
+           
             <p class="to">Цена</p>
             <input type="number" name="price" id="" placeholder="Цена" value="{{lamp.price}}">
           
