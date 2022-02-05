@@ -11,6 +11,20 @@ MODEL {{lamp.name}}
             <p class="to">Ссылка</p>
             <input type="text" placeholder="ссылка" name="slug" value="{{lamp.slug}}">
             <input name="photos" type="file" multiple>
+            <div class="imge">
+                
+                <a href="/adminzet/adminpanel/model/{{lamp.slug}}/deleteallphoto">DELETE ALL</a>
+               
+           {{#each photo}}
+                <img src="/public/upload/models/{{this}}" alt="">
+                <form action="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/editphoto" enctype="multipart/form-data" method="POST">
+                    <button type="submit">Изменить</button>
+                </form>
+                <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/delete">DELETE</a>
+                <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/up">↑</a>
+                 <a href="/adminzet/adminpanel/model/{{../lamp.slug}}/{{@index}}/down">↓</a>
+            {{/each}}
+            </div>
             <p class="to">Цена</p>
             <input type="number" name="price" id="" placeholder="Цена" value="{{lamp.price}}">
           

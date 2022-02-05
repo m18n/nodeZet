@@ -59,11 +59,10 @@ router.get('/adminpanel/model/:model', authMiddleware, adminMiddleware, async (r
 
     console.log(sch[s].GetVar("calculator_id"))
     obje = sch[s].GetObjectAll()
-    // await sch[s].CreateConn("calculator_id","calculators",sch[s].GetVar("calculator_id"))
-    // 
-    // let clobj=obje.calculator_id.GetObjectAll()
-    // obje.calculator_id=clobj
-
+  
+    
+    let photos = obje.photo.split('\n')//GET PHOTO
+    photos.length = photos.length - 1;
     let cal = await base.schema.StaticGetAll("calculators")
     let headcal = [];
     let ide = -1
@@ -75,10 +74,10 @@ router.get('/adminpanel/model/:model', authMiddleware, adminMiddleware, async (r
     }
     let name;
     if(ide!=-1){
-    headcal.splice(ide, 1)
-    name=cal[ide].GetVar("name");
+        headcal.splice(ide, 1)
+        name=cal[ide].GetVar("name");
     }
-    res.render('adminmodel.hbs', { layout: 'admin', lamp: obje, cals: headcal, cal: name })
+    res.render('adminmodel.hbs', { layout: 'admin', lamp: obje, cals: headcal, cal: name,photo:photos })
 })
 router.get('/adminpanel/addmodel', authMiddleware, adminMiddleware, async (req, res) => {
 
