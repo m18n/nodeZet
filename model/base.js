@@ -13,9 +13,8 @@ class cell {
     }
 }
 class schema {
-    vars = []
-
     constructor(nametable) {
+        this.vars=[];
         this.id = -1
         this.nametable = nametable
     }
