@@ -1,7 +1,8 @@
 config.js
+node_modules/*
 # exclude everything
 public/upload/*
 
 # exception to the rule
 !public/upload/.gitkeep 
-node_modules/*
+
